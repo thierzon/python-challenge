@@ -40,59 +40,52 @@ with open(resources_path, newline='') as csvfile:
     i = 0
     average = []
 
-    for i in range (len(profit)):
-        for j in range(i + 1, len(profit)):
-            difference = profit[j] - profit[i]
-            average.append(difference)
+    for i in range (len(profit) - 1):
+        average.append(profit[i + 1] - profit[i])
 
-    average_change = int(sum(average) / len(average))
+    average_change = round(sum(average) / len(average), 2)
 
-    # Greatest increase in profits
+    # Greatest increase and decrease in profits
     
     i = 0
     increase_profit = 0
-
-    for i in range (len(profit)):
-        difference = 0
-        for j in range(i + 1, len(profit)):
-            difference = profit[j] - profit[i]
-            if 0 <= increase_profit < difference:
-                increase_profit = difference
-                increase_month = str(month[j])
-
-    # Greatest decrease in profits
-
-    i = 0
     decrease_profit = 0
 
-    for i in range (len(profit)):
+    for i in range (len(profit) - 1):
         difference = 0
-        for j in range(i + 1, len(profit)):
-            difference = profit[j] - profit[i]
-            if 0 >= decrease_profit > difference:
-                decrease_profit = difference
-                decrease_month = str(month[j])
+        difference = profit[i + 1] - profit[i]
+        if difference >= 0 and difference > increase_profit:
+            increase_profit = difference
+            increase_month = str(month[i + 1])
+        elif difference < decrease_profit:
+            decrease_profit = difference
+            decrease_month = str(month[i + 1])
 
     # Print analysis results to Terminal
 
+    print("-----------------------------")
     print("Financial analysis")
     print("-----------------------------")
     print(f"Total months: {total_months}")
-    print(f"Total profit: $ {total_profit}")
-    print(f"Average change: $ {average_change}")
-    print(f"Greatest increase in profits: {increase_month} ($ {increase_profit})")
+    print(f"Total profit: ${total_profit}")
+    print(f"Average change: ${average_change}")
+    print(f"Greatest increase in profits: {increase_month} (${increase_profit})")
     print(f"Greatest decrease in profits: {decrease_month} (${decrease_profit})")
+    print("-----------------------------")
 
     # Save analysis results to txt file
 
     analysis_path = os.path.join("Analysis", "analysis.txt")
 
     text_file = open(analysis_path, "w+")
+    text_file.write("-----------------------------\n")
     text_file.write("Financial analysis\n")
     text_file.write("-----------------------------\n")
     text_file.write(f"Total months: {total_months}\n")
-    text_file.write(f"Total profit: $ {total_profit}\n")
-    text_file.write(f"Greatest increase in profits: {increase_month} ($ {increase_profit})\n")
+    text_file.write(f"Total profit: ${total_profit}\n")
+    text_file.write(f"Average change: ${average_change}\n")
+    text_file.write(f"Greatest increase in profits: {increase_month} (${increase_profit})\n")
     text_file.write(f"Greatest decrease in profits: {decrease_month} (${decrease_profit})\n")
+    text_file.write("-----------------------------\n")
     text_file.close()
 

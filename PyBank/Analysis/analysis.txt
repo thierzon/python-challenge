@@ -1,0 +1,6 @@
+Financial analysis
+-----------------------------
+Total months: 86
+Total profit: $ 38382578
+Greatest increase in profits: Sep-2014 ($ 2362868)
+Greatest decrease in profits: Sep-2013 ($-2366818)

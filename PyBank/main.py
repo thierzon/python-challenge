@@ -54,10 +54,11 @@ with open(resources_path, newline='') as csvfile:
     for i in range (len(profit) - 1):
         difference = 0
         difference = profit[i + 1] - profit[i]
-        if difference >= 0 and difference > increase_profit:
+        # if difference >= 0 and difference > increase_profit:
+        if 0 <= increase_profit < difference:
             increase_profit = difference
             increase_month = str(month[i + 1])
-        elif difference < decrease_profit:
+        elif decrease_profit > difference:
             decrease_profit = difference
             decrease_month = str(month[i + 1])
 
@@ -68,9 +69,9 @@ with open(resources_path, newline='') as csvfile:
     print("-----------------------------")
     print(f"Total months: {total_months}")
     print(f"Total profit: ${total_profit}")
-    print(f"Average change: ${average_change}")
-    print(f"Greatest increase in profits: {increase_month} (${increase_profit})")
-    print(f"Greatest decrease in profits: {decrease_month} (${decrease_profit})")
+    print(f"Average change in profit: ${average_change}")
+    print(f"Greatest increase in profit: {increase_month} (${increase_profit})")
+    print(f"Greatest decrease in profit: {decrease_month} (${decrease_profit})")
     print("-----------------------------")
 
     # Save analysis results to txt file
@@ -83,9 +84,9 @@ with open(resources_path, newline='') as csvfile:
     text_file.write("-----------------------------\n")
     text_file.write(f"Total months: {total_months}\n")
     text_file.write(f"Total profit: ${total_profit}\n")
-    text_file.write(f"Average change: ${average_change}\n")
-    text_file.write(f"Greatest increase in profits: {increase_month} (${increase_profit})\n")
-    text_file.write(f"Greatest decrease in profits: {decrease_month} (${decrease_profit})\n")
+    text_file.write(f"Average change in profit: ${average_change}\n")
+    text_file.write(f"Greatest increase in profit: {increase_month} (${increase_profit})\n")
+    text_file.write(f"Greatest decrease in profit: {decrease_month} (${decrease_profit})\n")
     text_file.write("-----------------------------\n")
     text_file.close()
 

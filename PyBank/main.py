@@ -11,9 +11,9 @@ profit = []
 # Import the PyBank budget data
 resources_path = os.path.join("Resources", "budget_data.csv")
 
-with open(resources_path, newline='') as csvfile:
+with open(resources_path, newline = "") as csvfile:
 
-    csvreader = csv.reader(csvfile, delimiter=',')
+    csvreader = csv.reader(csvfile, delimiter = ",")
 
     # Skip header
 
@@ -54,7 +54,6 @@ with open(resources_path, newline='') as csvfile:
     for i in range (len(profit) - 1):
         difference = 0
         difference = profit[i + 1] - profit[i]
-        # if difference >= 0 and difference > increase_profit:
         if 0 <= increase_profit < difference:
             increase_profit = difference
             increase_month = str(month[i + 1])

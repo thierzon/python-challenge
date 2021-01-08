@@ -15,9 +15,9 @@ with open(resources_path, newline = "") as csvfile:
 
     csvreader = csv.reader(csvfile, delimiter = ",")
 
-    # Skip header
+    # Read and save header
 
-    next(csvreader)
+    csv_header = next(csvreader)
 
     # Store month and profit info in lists
 

@@ -41,30 +41,19 @@ with open(resources_path) as csvfile:
 
     total_votes = len(candidate_data)
 
-    # Complete list of candidates who received votes
+    # Create list for number of votes per candidate
 
     candidate_list = votes(candidate_data)
+
+    # Create lists for candidates, percentage of votes per candidate and total number of votes per candidate
     
     candidate = []
-
-    for i in candidate_list:
-        
-        candidate.append(str(i))
-
-    # Percentage of votes each candidate won
-
     candidate_percentage = []
-
-    for i in candidate_list:
-        
-        candidate_percentage.append(round((float(candidate_list[i]) / float(total_votes)) * 100, 2))
-
-    # Total number of votes each candidate won
-
     candidate_votes = []
 
     for i in candidate_list:
-        
+        candidate.append(str(i))
+        candidate_percentage.append(round((float(candidate_list[i]) / float(total_votes)) * 100, 1))
         candidate_votes.append(int(candidate_list[i]))
 
     # Winner of the election based on popular vote

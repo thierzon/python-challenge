@@ -4,11 +4,16 @@
 import os
 import csv
 
-# Lists to store data
+# Lists and variables
 month = []
 profit = []
+average = []
+increase_profit = 0
+decrease_profit = 0
+difference = 0
 
 # Import the PyBank budget data
+
 resources_path = os.path.join("Resources", "budget_data.csv")
 
 with open(resources_path, newline = "") as csvfile:
@@ -22,9 +27,7 @@ with open(resources_path, newline = "") as csvfile:
     # Store month and profit info in lists
 
     for row in csvreader:
-        
         month.append(row[0])
-
         profit.append(int(row[1]))
 
     # Total number of months included in dataset    
@@ -37,22 +40,14 @@ with open(resources_path, newline = "") as csvfile:
     
     # Average of changes in Profit/Losses
 
-    i = 0
-    average = []
-
     for i in range (len(profit) - 1):
         average.append(profit[i + 1] - profit[i])
 
     average_change = round(sum(average) / len(average), 2)
 
     # Greatest increase and decrease in profits
-    
-    i = 0
-    increase_profit = 0
-    decrease_profit = 0
 
     for i in range (len(profit) - 1):
-        difference = 0
         difference = profit[i + 1] - profit[i]
         if 0 <= increase_profit < difference:
             increase_profit = difference
